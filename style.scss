@@ -1,0 +1,194 @@
+@import "compass/css3/flexbox";
+
+@font-face {
+  font-family: 'PT Mono';
+  src: local('PT Mono'), local('PT-Mono'), url('pt-mono.woff') format('woff');
+}
+@font-face {
+  font-family: 'Rokkitt';
+  src: local('Rokkitt'), url('rokkitt.woff') format('woff');
+}
+@font-face {
+  font-family: 'Rokkitt';
+  font-weight: bold;
+  src: local('Rokkitt Bold'), url('rokkitt-bold.woff') format('woff');
+}
+@font-face {
+  font-family: 'Varela';
+  src: local('Varela'), url('varela.woff') format('woff');
+}
+
+$title-font: Rokkitt,   sans-serif;
+$body-font:  Varela,    sans-serif;
+$mono-font:  'PT Mono', monospace;
+
+// http://paletton.com/#uid=b4b3h5y0kiZlh7JBadyr1nmgntaaf
+$main:          hsl(252, 35%, 34%);
+$main-light:    hsl(253, 27%, 74%);
+$main-dark:     hsl(252, 62%, 14%);
+
+$accent1:       hsl(351, 51%, 38%);
+$accent1-light: hsl(352, 77%, 81%);
+$accent1-dark:  hsl(349, 94%, 12%);
+
+$accent2:       hsl(177, 44%, 23%);
+$accent2-light: hsl(179, 18%, 54%);
+$accent2-dark:  hsl(177, 53%, 16%);
+
+$round: 10px;
+$border-thickness: 2px;
+
+$narrow: 800px;
+
+body {
+  background: $main url(halftone.png) fixed;
+  margin: 0;
+  padding: 0;
+  @include display-flex;
+  @include flex-direction(column);
+}
+
+#top, article {
+  padding: 5mm 2cm;
+}
+
+#top {
+  @include display-flex;
+  @include flex-direction(row);
+  @media screen and (max-width: $narrow) {
+    @include flex-direction(column);
+  }
+
+  margin: 1.5cm 3cm 5mm 3cm;
+  padding: 0;
+  * { margin: 0; padding: 0; }
+
+  header {
+    margin-right: 2ex;
+    padding-left: 2cm;
+    * { margin: 0; }
+    min-width: 6em;
+    text-shadow: 0 2px 3px black;
+    @include flex-grow(1);
+    img { float: left; margin-right: 1em; }
+  }
+
+  nav.ext {
+    @media screen and (max-width: $narrow) {
+      margin-top: 5mm;
+    }
+    padding: 3mm 2ex;
+    a {
+      color: inherit;
+    }
+    ul {
+      margin: 0;
+      li {
+        list-style: {
+          type: none;
+          position: inside;
+        }
+        &:before {
+          content: "→";
+          padding-right: 1ex;
+        }
+      }
+    }
+    background-color: $accent1;
+    color: white;
+    text-shadow: 0 2px 3px black;
+    border: $border-thickness solid $accent1-dark;
+    border-radius: $round;
+    min-width: 6em;
+  }
+}
+
+article {
+  margin: 0 3cm;
+  background: fade-out(white, 0.3);
+  color: $main-dark;
+  border: $border-thickness solid $main-dark;
+  border-radius: $round;
+  @include flex-grow(1);
+}
+
+$stripe: 5mm solid $accent2-light;
+
+nav.int, footer {
+  font-size: 14pt;
+  background-color: $accent2-dark;
+  color: white;
+  text-shadow: 0 2px 3px black;
+  padding: 5mm;
+  ul {
+    margin: 0; padding: 0;
+    li {
+      display: inline;
+      list-style: none;
+      padding-right: 2ex;
+    }
+  }
+}
+nav.int {
+  border-bottom: $stripe;
+  margin: 0;
+}
+footer {
+  border-top: $stripe;
+  margin: 2cm 0 0 0;
+  text-align: right;
+  position: relative;
+  bottom: 0;
+}
+
+a {
+  color: $accent1;
+  text-decoration: none;
+  &:hover {
+    text-decoration: underline;
+  }
+}
+
+.clear {
+  margin: 0;
+  padding: 0;
+  clear: both;
+}
+
+/////////////////////////
+
+body {
+  font: {
+    family: $body-font;
+    size: 16pt;
+  }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  //text-transform: lowercase;
+  font-family: $title-font;
+  font-weight: normal;
+  em {
+    font: {
+      style: normal;
+      weight: bolder;
+    }
+  }
+}
+
+header {
+  color: white;
+  h1 {
+    font: {
+      weight: bold;
+      size: 40pt;
+    }
+  }
+  h2 {
+    font-size: 28pt;
+  }
+}
+
+code, pre {
+  font-family: $mono-font;
+}
